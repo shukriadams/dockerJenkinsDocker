@@ -2,6 +2,8 @@
 
 Extends the official Jenkins docker image by adding support for docker inside Jenkins.
 
+Available @ https://hub.docker.com/repository/docker/shukriadams/dockerjenkinsdocker
+
 ## Use
 
 An existing container image can mounted using this compose script

@@ -22,6 +22,11 @@ An existing container image can mounted using docker-compose as folllows
 ### Conditions 
 
 - Docker.sock must be passed in to the container for this to work
+- You need to set permissions of the socket on the host with, the simplest way is with
+    
+      chmod 666 /var/run/docker.sock 
+
+  You can presumably also fix this by giving the jenkins user (1000) special access to the host socket
 - The container host's Docker must be same version as the container's - @ Jenkins 2.213, Docker version is 19.03.5 To install Docker at this version use
 
         wget https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/containerd.io_1.2.6-3_amd64.deb \

@@ -28,9 +28,6 @@ RUN apt-get update \
     && chmod +x /usr/local/bin/docker-compose \
     # add jenkins user to docker group so it can access docker daemon
     && usermod -aG docker jenkins \
-    # fix permission error when jenkins user accesses socket. Socket will be passed in by docker-compose so we need placeholder file
-    && touch /var/run/docker.sock \
-    && chmod 666 /var/run/docker.sock \
     # remeove utils. We'll keep curl because why not
     && apt-get remove wget -y
 

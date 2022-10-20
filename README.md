@@ -16,7 +16,9 @@ An existing container image can mounted using docker-compose as folllows
                 restart: unless-stopped
                 ports:
                 - "8080:8080"
+                user: "root:${GID}" # for container users
                 volumes:
+                - ./data:/var/jenkins_home/:rw
                 - /var/run/docker.sock:/var/run/docker.sock/:rw
 
 ### Conditions 
@@ -47,3 +49,13 @@ An existing container image can mounted using docker-compose as folllows
 Build with
 
     docker build -t yourcontainername .
+
+## Using containers within this container
+
+`docker` is available within this container from the command line, but if you want to persist your data outside of the container with volume mounts, you'll need to
+pay attention to paths - paths are relative to the filesystem that is hosting the Jenkins container. If for example your Jenkins container's home directory is mounted
+to /srv/jenkins/data on the host machine, then your job should mount to this absolute path
+
+    docker run -u ${UID}:${GID} -v /srv/jenkins/data/workspace/"$JOB_NAME":/tmp/myworkdir ubuntu:22.04 touch myfile
+    
+This will create a file `myfile` in the Jenkins workspace for the current job.

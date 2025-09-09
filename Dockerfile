@@ -11,9 +11,9 @@ RUN apt-get update \
     # libs required by docker
     && apt-get -y install libseccomp2 \
     && apt-get -y install iptables \
-    && apt-get -y install libdevmapper-dev  
+    && apt-get -y install libdevmapper-dev \ 
     # install docker @ 19.03 explicitly
-    wget https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/containerd.io_1.2.6-3_amd64.deb \
+    && wget https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/containerd.io_1.2.6-3_amd64.deb \
     && wget https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce-cli_19.03.5~3-0~ubuntu-bionic_amd64.deb \
     && wget https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce_19.03.5~3-0~ubuntu-bionic_amd64.deb \
     && dpkg -i docker-ce-cli_19.03.5~3-0~ubuntu-bionic_amd64.deb \
